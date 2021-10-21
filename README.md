@@ -16,6 +16,6 @@
 
 The entry point is ***main.js***, in which we can change the input file name and output file names or the relative paths. It will use *PythonShell* to run python script (***optimization.py***). We can visualize graphs by ***visualization.py*** (We should change the file's path in the file).
 
-***optimization.py*** calls algo.c extension to run the algo, if you want to modify some codes to cater for your needs, go to *algo.pyx*. To save the changes, input following command in the terminal:
+***optimization.py*** calls algo.c extension to run the algo, if you want to modify some codes to cater for your needs, go to ***algo.pyx***. To save the changes, input following command in the terminal:
 
 `python setup.py build_ext --inplace`
