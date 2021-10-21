@@ -40,7 +40,7 @@ def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None
 #     rawNodeData = f.read()
 #     parsedNodeData = json.loads(rawNodeData)
 
-with open("./step3Finished.json", "r") as f:
+with open("./result/step3Finished.json", "r") as f:
     rawData = f.read()
     parsedData = json.loads(rawData)
     parsedNodeData = parsedData["nodes"]
