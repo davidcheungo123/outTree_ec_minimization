@@ -1,0 +1,352 @@
+{
+    "nodes": [
+        {
+            "id": "NO_352",
+            "type": 0,
+            "num": 0
+        },
+        {
+            "id": "EX_478",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "IN_479",
+            "type": 1,
+            "num": 12
+        },
+        {
+            "id": "IN_585",
+            "type": 1,
+            "num": 16
+        },
+        {
+            "id": "EX_586",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_587",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "IN_588",
+            "type": 1,
+            "num": 2
+        },
+        {
+            "id": "EX_589",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_590",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_591",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_592",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "IN_593",
+            "type": 1,
+            "num": 2
+        },
+        {
+            "id": "IN_594",
+            "type": 1,
+            "num": 1
+        },
+        {
+            "id": "EX_595",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "IN_596",
+            "type": 1,
+            "num": 1
+        },
+        {
+            "id": "EX_597",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_598",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_722",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_723",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_724",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_725",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_726",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_727",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_728",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "NO_729",
+            "type": 0,
+            "num": 0
+        },
+        {
+            "id": "EX_730",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_922",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_923",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_924",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_925",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "EX_926",
+            "type": 3,
+            "num": 1
+        },
+        {
+            "id": "IN_289",
+            "type": 1,
+            "num": 75
+        }
+    ],
+    "links": [
+        {
+            "id": "IN_289_NO_352",
+            "source": "IN_289",
+            "target": "NO_352",
+            "len": 3.4e-05
+        },
+        {
+            "id": "NO_352_EX_478",
+            "source": "NO_352",
+            "target": "EX_478",
+            "len": 3.4e-05
+        },
+        {
+            "id": "NO_352_IN_479",
+            "source": "NO_352",
+            "target": "IN_479",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_479_IN_585",
+            "source": "IN_479",
+            "target": "IN_585",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_479_EX_586",
+            "source": "IN_479",
+            "target": "EX_586",
+            "len": 0.0001031
+        },
+        {
+            "id": "IN_479_EX_587",
+            "source": "IN_479",
+            "target": "EX_587",
+            "len": 3.54e-05
+        },
+        {
+            "id": "IN_479_IN_588",
+            "source": "IN_479",
+            "target": "IN_588",
+            "len": 3.44e-05
+        },
+        {
+            "id": "IN_479_EX_589",
+            "source": "IN_479",
+            "target": "EX_589",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_479_EX_590",
+            "source": "IN_479",
+            "target": "EX_590",
+            "len": 6.99e-05
+        },
+        {
+            "id": "IN_479_EX_591",
+            "source": "IN_479",
+            "target": "EX_591",
+            "len": 3.49e-05
+        },
+        {
+            "id": "IN_479_EX_592",
+            "source": "IN_479",
+            "target": "EX_592",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_479_IN_593",
+            "source": "IN_479",
+            "target": "IN_593",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_479_IN_594",
+            "source": "IN_479",
+            "target": "IN_594",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_479_EX_595",
+            "source": "IN_479",
+            "target": "EX_595",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_479_IN_596",
+            "source": "IN_479",
+            "target": "IN_596",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_479_EX_597",
+            "source": "IN_479",
+            "target": "EX_597",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_479_EX_598",
+            "source": "IN_479",
+            "target": "EX_598",
+            "len": 6.85e-05
+        },
+        {
+            "id": "IN_585_EX_722",
+            "source": "IN_585",
+            "target": "EX_722",
+            "len": 0.000136
+        },
+        {
+            "id": "IN_585_EX_723",
+            "source": "IN_585",
+            "target": "EX_723",
+            "len": 7e-05
+        },
+        {
+            "id": "IN_585_EX_724",
+            "source": "IN_585",
+            "target": "EX_724",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_588_EX_725",
+            "source": "IN_588",
+            "target": "EX_725",
+            "len": 7.02e-05
+        },
+        {
+            "id": "IN_593_EX_726",
+            "source": "IN_593",
+            "target": "EX_726",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_594_EX_727",
+            "source": "IN_594",
+            "target": "EX_727",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_594_EX_728",
+            "source": "IN_594",
+            "target": "EX_728",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_594_NO_729",
+            "source": "IN_594",
+            "target": "NO_729",
+            "len": 3.4e-05
+        },
+        {
+            "id": "IN_596_EX_730",
+            "source": "IN_596",
+            "target": "EX_730",
+            "len": 3.4e-05
+        },
+        {
+            "id": "NO_729_EX_922",
+            "source": "NO_729",
+            "target": "EX_922",
+            "len": 6.79e-05
+        },
+        {
+            "id": "NO_729_EX_923",
+            "source": "NO_729",
+            "target": "EX_923",
+            "len": 0.0001025
+        },
+        {
+            "id": "NO_729_EX_924",
+            "source": "NO_729",
+            "target": "EX_924",
+            "len": 3.44e-05
+        },
+        {
+            "id": "NO_729_EX_925",
+            "source": "NO_729",
+            "target": "EX_925",
+            "len": 3.57e-05
+        },
+        {
+            "id": "NO_729_EX_926",
+            "source": "NO_729",
+            "target": "EX_926",
+            "len": 3.47e-05
+        }
+    ]
+}
