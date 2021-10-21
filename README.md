@@ -11,8 +11,7 @@
 #### b. Link Object:
 `{id : <nodeObjectID_1>_<nodeObjectID_2>, source : <nodeObject_1>, target : <nodeObject_2>, len : <float>}`
 
-#### 2. Data structure of output file (json):
-as same as (1) mentioned
+#### 2. Data structure of output file (json): as same as (1) mentioned
 
 
 The entry point is *main.js*, in which we can change the input file name and output file names or the relative paths. It will use *PythonShell* to run python script (optimization.py). We can visualize graphs by visualization.py (We should change the file's path in the file).
