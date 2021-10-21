@@ -123,7 +123,7 @@ shell.on("message", function (message) {
 
         const simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(d => d.id).distance(d => 30000* d.len).iterations(1000).strength(0.1))
-        .force("charge", d3.forceManyBody().strength((d) => -1*(d.num+1)))
+        .force("charge", d3.forceManyBody().strength((d) => -(1 - simulation.alpha())*(d.num+1)))
         .force("collide", d3.forceCollide((d) => d.num).strength(1))
 
 

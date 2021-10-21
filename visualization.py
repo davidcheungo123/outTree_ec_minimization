@@ -9,7 +9,7 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 import timeit
-from fib_new import *
+from algo import *
 
 
 
@@ -40,7 +40,7 @@ def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None
 #     rawNodeData = f.read()
 #     parsedNodeData = json.loads(rawNodeData)
 
-with open("./result/step3Finished.json", "r") as f:
+with open("./results/step3Finished.json", "r") as f:
     rawData = f.read()
     parsedData = json.loads(rawData)
     parsedNodeData = parsedData["nodes"]
