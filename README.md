@@ -22,6 +22,6 @@
 
 #### 4. Install packages required:
 
-#### a. npm install
+a. npm install
 
-#### b. pip install networkx, pygraphviz, matplotlib
+b. pip install networkx, pygraphviz, matplotlib
