@@ -5,7 +5,8 @@ from pygraphviz import *
 from networkx.algorithms.community import greedy_modularity_communities
 from algo import *
 
-
+WITH_NODE_LABELS = True
+WITH_EDGE_LABELS = False
 
 def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None, c=None , node_labels=None):
     D = {}
@@ -16,9 +17,10 @@ def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None
     colorMap =[D[node] for node in G.nodes]
     plt.figure(figsize=(60, 60))
     nx.draw(G, nodes_position, node_size=40,
-            edge_color='gray', with_labels=True, node_color=colorMap, cmap=plt.cm.turbo, labels=node_labels, font_size=8)
-    ## nx.draw_networkx_edge_labels(
-    ##     G, nodes_position, edge_labels=edge_labels, font_color='red', font_size=8)
+            edge_color='gray', with_labels=WITH_NODE_LABELS, node_color=colorMap, cmap=plt.cm.turbo, labels=node_labels, font_size=14)
+    if WITH_EDGE_LABELS:
+        nx.draw_networkx_edge_labels(
+            G, nodes_position, edge_labels=edge_labels, font_color='red', font_size=8)
     plt.scatter([ind['x'] for ind in intersections], [ind['y']
                 for ind in intersections], color='purple', alpha=0.8, s=8)
     plt.savefig('resultEdge.png')

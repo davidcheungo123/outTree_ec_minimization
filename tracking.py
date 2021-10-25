@@ -31,10 +31,10 @@ for datumTrack in data:
 print(parsedData)
 tLength = len(parsedData[0])
 """end change data structure"""
-xMin = min([item[0] for sublist in parsedData for item in sublist])*0.9
-xMax = max([item[0] for sublist in parsedData for item in sublist])*1.1
-yMin = min([item[1] for sublist in parsedData for item in sublist])*0.9
-yMax = max([item[1] for sublist in parsedData for item in sublist])*1.1
+xMin = min([item[0] for sublist in parsedData for item in sublist])*0.97
+xMax = max([item[0] for sublist in parsedData for item in sublist])*1.03
+yMin = min([item[1] for sublist in parsedData for item in sublist])*0.97
+yMax = max([item[1] for sublist in parsedData for item in sublist])*1.03
 
 print(xMin, xMax, yMin, yMax)
 colors = cm.winter(np.linspace(0.0, 1.0, tLength))
@@ -46,8 +46,6 @@ for index, dataList in enumerate(parsedData):
     ax.set_ylim((yMin, yMax))
     # ax.set_color(sns.color_palette("flare", as_cmap=True))
     ax.scatter([x[0] for x in dataList], [x[1] for x in dataList], c=colors)
-
-
 
 plt.show()
 
