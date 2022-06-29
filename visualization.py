@@ -5,7 +5,7 @@ from pygraphviz import *
 from networkx.algorithms.community import greedy_modularity_communities
 from algo import *
 
-WITH_NODE_LABELS = True
+WITH_NODE_LABELS = False
 WITH_EDGE_LABELS = False
 
 def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None, c=None , node_labels=None):
@@ -26,8 +26,8 @@ def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None
     plt.savefig('resultEdge.png')
     plt.show()
 
-
-with open("./results/step3Finished.json", "r") as f:
+with open("./data/annealed/Untitled-Graph-1_nodesLinks.json", "r") as f:
+# with open("./results/step3Finished.json", "r") as f:
     rawData = f.read()
     parsedData = json.loads(rawData)
     parsedNodeData = parsedData["nodes"]
