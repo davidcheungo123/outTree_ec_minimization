@@ -9,6 +9,8 @@ a. npm install
 
 b. pip install networkx, pygraphviz, matplotlib
 
+c. pip install Cython
+
 
 #### 2. Data structure of input file (json):
 `{"nodes" : [<nodeObject> , <nodeObject>, ...], "links" : [<linkObject> , <linkObject>, ...]}`
