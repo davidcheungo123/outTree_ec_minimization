@@ -5,5 +5,5 @@ build/
 algo.c
 algo.cp*
 
-tracking/*
-results/*
+tracking/**
+results/**
