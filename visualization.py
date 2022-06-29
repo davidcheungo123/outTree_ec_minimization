@@ -26,7 +26,9 @@ def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None
     plt.savefig('resultEdge.png')
     plt.show()
 
-with open("./results/step3Finished.json", "r") as f:
+
+# with open("./data/annealed_gen/nodes_links_222.json", "r") as f:
+with open("./results/step2Finished.json", "r") as f:
     rawData = f.read()
     parsedData = json.loads(rawData)
     parsedNodeData = parsedData["nodes"]

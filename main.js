@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import {PythonShell} from 'python-shell';
 
 "STEP 1-----------------------------------------------------------------------"
-const fileName = "testDataCombined"
+const fileName = "nodes_links_222"
 let unprocessedData = fs.readFileSync(`data/pure/${fileName}.json`)
 unprocessedData = JSON.parse(unprocessedData)
 let nodes = unprocessedData["nodes"]
@@ -14,7 +14,7 @@ const ticked = () => {
 }
 
 
-const ended = (nodes, links) => {
+const ended = (nodes, links, fileName) => {
     "STEP 2-----------------------------------------------------------------------"
 
     // const fileName = "Untitled-Graph-1_nodesLinks"
@@ -25,6 +25,8 @@ const ended = (nodes, links) => {
     // // and {id : <int> , source : <nodesObject> , target : <nodeObject> , len : <float> , index : <int> }
     // let nodes = parsedData["nodes"]
     // let links = parsedData["links"]
+    let annealedData = JSON.stringify({nodes, links});
+    fs.writeFileSync(`data/annealed_gen/${fileName}.json`, annealedData)
 
 
     "an array of stringified nodeIDs"
@@ -116,7 +118,7 @@ simulation
 .nodes(nodes)
 // activate step 2
 .on("tick",ticked)
-.on("end", () => ended(nodes, links));
+.on("end", () => ended(nodes, links, fileName));
 
 simulation.force("link")
 .links(links)

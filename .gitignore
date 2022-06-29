@@ -4,6 +4,3 @@ node_modules
 build/
 algo.c
 algo.cp*
-
-tracking/**
-results/**
