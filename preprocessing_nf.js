@@ -2,30 +2,31 @@ import * as d3 from 'd3';
 import * as fs from 'fs';
 
 "STEP 1-----------------------------------------------------------------------"
-const fileName = "nodes_links_222"
-let unprocessedData = fs.readFileSync(`data/pure/${fileName}.json`)
+const args = process.argv.slice(2)
+
+
+const fileName = args[0]
+const rootDir = args[1]
+
+console.log(fileName.match(/(.*?).json/)[0])
+
+
+let unprocessedData = fs.readFileSync(`${rootDir}/finalInput/${fileName}`)
 unprocessedData = JSON.parse(unprocessedData)
 let nodes = unprocessedData["nodes"]
 let links = unprocessedData["links"]
 
 const ticked = () => {
-    console.log(`running... alpha: ${Math.round(simulation.alpha()*1000)/1000}`)
+    if ((simulation.alpha()*100) % 10 === 0) {
+        console.log(`running... alpha: ${Math.round(simulation.alpha()*1000)/1000}`)
+    }
 }
 
 
 const ended = (nodes, links, fileName) => {
-    "STEP 2-----------------------------------------------------------------------"
-
-    // const fileName = "Untitled-Graph-1_nodesLinks"
-    // let rawdData = fs.readFileSync(`data/annealed/${fileName}.json`)
-    // let parsedData = JSON.parse(rawdData)
-
-    // // the data structure of nodes and links are {id : <int> , num : <int> , x : <float> , y : <float> , vx : <float> , vy : <float>, cluster : <string>}
-    // // and {id : <int> , source : <nodesObject> , target : <nodeObject> , len : <float> , index : <int> }
-    // let nodes = parsedData["nodes"]
-    // let links = parsedData["links"]
+    "parsed the result to the main dir"
     let annealedData = JSON.stringify({nodes , links});
-    fs.writeFileSync(`data/annealed_gen/${fileName}.json`, annealedData)
+    fs.writeFileSync(`./${fileName.match(/(.*?).json/)[1]}_annealed.json`, annealedData)
 }
 
 
