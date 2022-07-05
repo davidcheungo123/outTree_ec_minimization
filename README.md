@@ -34,4 +34,4 @@ c. pip install Cython
 you can customize if you want to have node labels and edge labels by modifying the variables *WITH_NODE_LABELS* and *WITH_EDGE_LABELS* repectively. Furthermore, you should change the file path if the file path finished in step2 or step3 changes.
 
 #### 6. Tracking System:
-In **main.js**, we can add nodes that we would like to track to the array *tracking*, the tracking algo will be running during execution time including storing coordindate information into a file which is by default placed at *./tracking/trackingResults.json*. Afterwards, we can execute **tracking.py** to see more information about nodes defined in the *tracking* array.
+In **main_{2,3}steps.js**, we can add nodes that we would like to track to the array *tracking*, the tracking algo will be running during execution time including storing coordindate information into a file which is by default placed at *./tracking/trackingResults.json*. Afterwards, we can execute **tracking.py** to see more information about nodes defined in the *tracking* array.
