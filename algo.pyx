@@ -290,7 +290,7 @@ def mainAlgo(dict node,dict link,list parsedNodeData,list parsedLinkData,float T
         int l = len(requiredUpdateNode), N = len(parsedLinkData), recordLength
         unsigned int indexing, index
         # float PI = 3.14159265358979323846
-        int[:] orderedNodeIndex = np.zeros(l, dtype=int)
+        long[:] orderedNodeIndex = np.zeros(l, dtype=long)
         ## a numpy float is a C double.
         double[:] orderedNodeX = np.zeros(l, dtype=float)
         double[:] orderedNodeY = np.zeros(l, dtype=float)
