@@ -142,15 +142,14 @@ def main():
                          hashTable, nodeMapToParsedLinkDataIndex, nodeMapToParsedNodeDataIndex)
             temp = temp + 1
         stop = timeit.default_timer()
-        print(json.dumps({"message": f"Time: {stop-start}"}))
-        print(json.dumps({"nodes": parsedNodeData, "links": parsedLinksData}))
-        print(f"{outputDirectory}/{re.match(r'(.*?).json', inputFileName).group(1)}_final.json")
-
-
+        # print(json.dumps({"message": f"Time: {stop-start}"}))
+        # print(json.dumps({"nodes": parsedNodeData, "links": parsedLinksData}))
         with open(f"{outputDirectory}/{re.match(r'(.*?).json', inputFileName).group(1)}_final.json", "w") as f:
             json.dump({"nodes": parsedNodeData, "links": parsedLinksData}, f)
 
-        print("finished script.")
+        print("script is finished.")
+
+
     core(1, 9)
 
 
