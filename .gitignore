@@ -4,3 +4,9 @@ node_modules
 build/
 algo.c
 algo.cp*
+
+
+INNODE*.json
+SEQLESS*.json
+b_tree*.json
+ROOT*.json

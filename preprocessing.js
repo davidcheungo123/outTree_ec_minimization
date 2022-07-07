@@ -1,18 +1,11 @@
-import * as d3 from 'd3';
-import * as fs from 'fs';
+import * as d3 from "d3";
+import * as fs from "fs";
 
-"STEP 1-----------------------------------------------------------------------"
-const args = process.argv.slice(2)
+("STEP 1-----------------------------------------------------------------------");
 
-
-const fileName = args[0]
-const rootDir = args[1]
+const fileName = "INNODE_132_vis.json";
 
 
-let unprocessedData = fs.readFileSync(`${rootDir}/finalInput/${fileName}`)
-unprocessedData = JSON.parse(unprocessedData)
-let nodes = unprocessedData["nodes"]
-let links = unprocessedData["links"]
 
 const radiusCalc = (minR, maxR, gamma, value) => maxR - (maxR - minR) * Math.exp(-gamma * (value - 1));
 
@@ -61,10 +54,13 @@ function ticked() {
 }
 
 const ended = (nodes, links, fileName) => {
-    "parsed the result to the main dir"
+    "parsed the result to the main dir";
     let annealedData = JSON.stringify({ nodes, links });
-    fs.writeFileSync(`./${fileName.match(/(.*?).json/)[1]}_annealed.json`, annealedData)
-}
+    fs.writeFileSync(
+        `./data/annealed_gen/${fileName.match(/(.*?).json/)[1]}_annealed.json`,
+        annealedData
+    );
+};
 
 
 // This is the default settings from Joseph bubble-track
@@ -87,6 +83,11 @@ const params = {
     centreScale: 0.1,
     intScale: 0.5,
 };
+
+let unprocessedData = fs.readFileSync(`./data/pure/${fileName}`);
+unprocessedData = JSON.parse(unprocessedData);
+let nodes = unprocessedData["nodes"];
+let links = unprocessedData["links"];
 
 console.log(nodes);
 // console.log(links)
