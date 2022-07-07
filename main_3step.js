@@ -3,8 +3,11 @@ import * as fs from 'fs';
 import {PythonShell} from 'python-shell';
 
 "STEP 1-----------------------------------------------------------------------"
+
 const fileName = "nodes_links_222"
+
 let unprocessedData = fs.readFileSync(`data/pure/${fileName}.json`)
+// let unprocessedData = fs.readFileSync(`${rootDir}/finalInput/${fileName}`)
 unprocessedData = JSON.parse(unprocessedData)
 let nodes = unprocessedData["nodes"]
 let links = unprocessedData["links"]
@@ -26,8 +29,8 @@ const ended = (nodes, links, fileName) => {
     // let nodes = parsedData["nodes"]
     // let links = parsedData["links"]
     let annealedData = JSON.stringify({nodes, links});
-    fs.writeFileSync(`data/annealed_gen/${fileName}.json`, annealedData)
-
+    // fs.writeFileSync(`data/annealed_gen/${fileName}.json`, annealedData)
+    fs.writeFileSync(`data/annealed_gen/${fileName}_annealed.json`, annealedData)
 
     "an array of stringified nodeIDs"
     // const tracking = ["143", "130", "135"]
@@ -59,7 +62,7 @@ const ended = (nodes, links, fileName) => {
             let processedLinks = message["links"]
             let finishedData = JSON.stringify({nodes : processedNodes, links : processedLinks});
             "Output in Step 2*************************************************"
-            fs.writeFileSync('results/step2Finished.json', finishedData)
+            fs.writeFileSync(`results/${fileName}_step2Finished.json`, finishedData)
 
 
             "STEP 3-----------------------------------------------------------------------"
@@ -73,8 +76,8 @@ const ended = (nodes, links, fileName) => {
 
             const finalEnded = () => {
                 "Output in Step 3*************************************************"
-                fs.writeFileSync("results/step3Finished.json", JSON.stringify({nodes : processedNodes, links : processedLinks}))
-                fs.writeFileSync("tracking/trackingResults.json", JSON.stringify(trackingCoordinate))
+                fs.writeFileSync(`results/${fileName}_step3Finished.json`, JSON.stringify({nodes : processedNodes, links : processedLinks}))
+                fs.writeFileSync(`tracking/${fileName}_trackingResults.json`, JSON.stringify(trackingCoordinate))
 
             }
 

@@ -4,6 +4,7 @@ import {PythonShell} from 'python-shell';
 
 "STEP 2-----------------------------------------------------------------------"
 
+
 const fileName = "nodes_links_222"
 let rawdData = fs.readFileSync(`data/annealed_gen/${fileName}.json`)
 let parsedData = JSON.parse(rawdData)

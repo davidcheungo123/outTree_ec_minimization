@@ -28,7 +28,9 @@ def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None
 
 
 # with open("./data/annealed_gen/nodes_links_222.json", "r") as f:
-with open("./results/step2Finished.json", "r") as f:
+# with open("./results/step2Finished.json", "r") as f:
+with open("../output/INNODE_10206_vis_annealed.json", "r") as f:
+# with open("../finalOutput/INNODE_10206_vis_annealed_final.json", "r") as f:
     rawData = f.read()
     parsedData = json.loads(rawData)
     parsedNodeData = parsedData["nodes"]
