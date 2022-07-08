@@ -98,10 +98,10 @@ def updateCoordinatesY(double[:] x, double[:] y, float cX, float cY, float rad, 
 ##need to modify to cater for new function.
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def lossFunction(dict node,float realTheta,list parsedLinkData):
+def lossFunction(dict node,float realTheta,list parsedLinkData, dict nodeIDMapToParsedLinkDataIndexTarget):
     cdef double convertedTheta = realTheta*PI/180
     ## this can be imporved using hashmap
-    cdef list matchedLink = [x for x in parsedLinkData if x['target']['id'] == node['id']]
+    cdef list matchedLink = [parsedLinkData[nodeIDMapToParsedLinkDataIndexTarget[node["id"]]]] if nodeIDMapToParsedLinkDataIndexTarget.get(node["id"], None) is not None else []
     cdef dict parentLinkObject, matchedLinkObject , parentNode
     cdef double a, b, cX, cY, middleX, middleY, deltaX, deltaY
     cdef list parentLink
@@ -111,7 +111,7 @@ def lossFunction(dict node,float realTheta,list parsedLinkData):
         matchedLinkObject = matchedLink[0]
         parentNode = matchedLinkObject['source']
         ## this can be imporved using hashmap
-        parentLink = [x for x in parsedLinkData if x['target']['id'] == parentNode['id']]
+        parentLink = [parsedLinkData[nodeIDMapToParsedLinkDataIndexTarget[parentNode["id"]]]] if nodeIDMapToParsedLinkDataIndexTarget.get(parentNode["id"], None) is not None else []
         if len(parentLink) == 0:
             return cos(convertedTheta)
         else:
@@ -130,7 +130,7 @@ def lossFunction(dict node,float realTheta,list parsedLinkData):
 ## can be destructured to function(hashTable, requiredNode)
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def search(dict hashTable, str requiredNode):
+def search(str requiredNode, dict nodeIDMapToParsedLinkDataIndexSource, dict nodeIDMapToParsedLinkDataIndexTarget, list parsedLinkData):
     cdef:
         list frontier = [requiredNode]
         list childrenNode = []
@@ -141,8 +141,8 @@ def search(dict hashTable, str requiredNode):
         else:
             currentNode = frontier.pop()
             childrenNode.append(currentNode)
-            for link in hashTable[currentNode]:
-                frontier.append(link['target']['id'])
+            for linkID in nodeIDMapToParsedLinkDataIndexSource[currentNode]:
+                frontier.append(parsedLinkData[linkID]['target']['id'])
 
 
 @cython.boundscheck(False)
@@ -254,6 +254,8 @@ def calIntersectionNum(list links, list requiredLinkIDs, list filteredLinksIDs )
                         if (linkA["target"]["id"] != linkB["source"]["id"] and linkA["source"]["id"] != linkB["target"]["id"] and linkA["source"]["id"] != linkB["source"]["id"]):
                             result += 1
     return result
+""""""
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -286,13 +288,16 @@ def findIntersection(list links):
 
 ## all nodes inputed should not be root node here
 @cython.boundscheck(False)
-def mainAlgo(dict node,dict link,list parsedNodeData,list parsedLinkData,float THETA, float LAMBDA, dict hashTable, dict nodeMapToParsedLinkDataIndex, dict nodeMapToParsedNodeDataIndex):
+def mainAlgo(dict node, dict link, list parsedNodeData, list parsedLinkData, float THETA, float LAMBDA,
+    dict nodeIDMapToParsedLinkDataIndexSource, dict nodeIDMapToParsedLinkDataIndexTarget, dict nodeIDMapToParsedNodeDataIndex,
+    dict linkIDMapToParsedNodeDataIndexSource, dict linkIDMapToParsedNodeDataIndexTarget, dict linkIDMapToParsedLinkDataIndex
+    ):
+
     cdef:
         int numOfIntersections, iterations = 0, currentNodeIndex, nodeIndex, breakFromWhile = 0, tempIndex = 1
-        list requiredUpdateNode = search(hashTable, node['id'])
+        list requiredUpdateNode = search(node['id'], nodeIDMapToParsedLinkDataIndexSource,  nodeIDMapToParsedLinkDataIndexTarget, parsedLinkData)
         int l = len(requiredUpdateNode), N = len(parsedLinkData), recordLength
         unsigned int indexing, index
-        # float PI = 3.14159265358979323846
         long[:] orderedNodeIndex = np.zeros(l, dtype=long)
         ## a numpy float is a C double.
         double[:] orderedNodeX = np.zeros(l, dtype=float)
@@ -304,14 +309,11 @@ def mainAlgo(dict node,dict link,list parsedNodeData,list parsedLinkData,float T
         list records = [], selectedLink , linkFilteredList = [] , linkObjects = [0 for i in range(l)]
         dict bestRecord, tempDict , selectedLinkObject, lastLinkObject
 
-
-    ## linkObjects contain the index of the links in "parsedLinkData" matched with nodes in "requiredUpdateNode" 
-    ## orderedNodeIndex, orderedNodeX and orderedNodeY contain index, x and y information for "requiredUpdateNode"
     for index in range(l):
-        linkObjects[index] = nodeMapToParsedLinkDataIndex[requiredUpdateNode[index]]
-        orderedNodeIndex[index] = nodeMapToParsedNodeDataIndex[requiredUpdateNode[index]]
-        orderedNodeX[index] = float(parsedNodeData[nodeMapToParsedNodeDataIndex[requiredUpdateNode[index]]]["x"])
-        orderedNodeY[index] = float(parsedNodeData[nodeMapToParsedNodeDataIndex[requiredUpdateNode[index]]]["y"])
+        linkObjects[index] = nodeIDMapToParsedLinkDataIndexTarget[requiredUpdateNode[index]]
+        orderedNodeIndex[index] = nodeIDMapToParsedNodeDataIndex[requiredUpdateNode[index]]
+        orderedNodeX[index] = float(parsedNodeData[orderedNodeIndex[index]]["x"])
+        orderedNodeY[index] = float(parsedNodeData[orderedNodeIndex[index]]["y"])
     
     lastLinkObject = parsedLinkData[linkObjects[-1]]
     R = sqrt((link["source"]["x"] - lastLinkObject["target"]["x"])**2 + (link["source"]["y"] - lastLinkObject["target"]["y"])**2)
@@ -320,8 +322,9 @@ def mainAlgo(dict node,dict link,list parsedNodeData,list parsedLinkData,float T
         if parsedLinkData[index]["target"]["id"] not in requiredUpdateNode:
             if checkInfiniteCollision(parsedLinkData[index]["source"]["x"], parsedLinkData[index]["source"]["y"], parsedLinkData[index]["target"]["x"], parsedLinkData[index]["target"]["y"], cX, cY, R):
                 linkFilteredList.append(index)
+
     """
-    ##orderedNodeIndex is a list of node index matched with 'requiredUpdateNode'
+    orderedNodeIndex is a list of node index matched with 'requiredUpdateNode'
     for index, nodeID in enumerate(requiredUpdateNode):
 
     Update coordinate from node, cX, cY and theta information and append the coordinates of the children nodes and root node into
@@ -350,7 +353,7 @@ def mainAlgo(dict node,dict link,list parsedNodeData,list parsedLinkData,float T
             breakFromWhile  = 1
             break
         """The loss function is defined as : #Intersections  - lambda * dotproduct (which is for measuring the degree of parallelism)"""
-        records[-1]["loss"] = numOfIntersections - LAMBDA*lossFunction(node, binaryVariable, parsedLinkData)
+        records[-1]["loss"] = numOfIntersections - LAMBDA*lossFunction(node, binaryVariable, parsedLinkData, nodeIDMapToParsedLinkDataIndexTarget)
         iterations += 1
         realTheta = iterations* THETA
     
@@ -362,5 +365,3 @@ def mainAlgo(dict node,dict link,list parsedNodeData,list parsedLinkData,float T
             for key, value in bestRecord['childNodes'].items():
                 parsedNodeData[orderedNodeIndex[tempIndex]].update({"x" : value[0], "y" : value[1]})
                 tempIndex += 1
-
-
