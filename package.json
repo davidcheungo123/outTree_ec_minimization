@@ -1,21 +1,32 @@
 {
-  "name": "ec_module",
+  "name": "outtree_ec_minimization",
   "version": "1.0.0",
-  "description": "This is a algo for edge crossing minimization (out tree)",
+  "description": "This package is for graph visualization optimization, especially for outTree [COVID19]",
   "main": "main.js",
   "scripts": {
     "test": "node main.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidcheungo123/outTree_ec_minimization.git"
+  },
   "keywords": [
-    "edge",
-    "crossings"
+    "covid",
+    "graph",
+    "outtree",
+    "acyclic",
+    "directed"
   ],
-  "author": "David Cheung <cheungyuk123@gmail.com>",
+  "author": "David Cheung",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidcheungo123/outTree_ec_minimization/issues"
+  },
+  "homepage": "https://github.com/davidcheungo123/outTree_ec_minimization#readme",
   "dependencies": {
-    "d3": "^7.1.1",
+    "d3": "^7.5.0",
     "fs": "^0.0.1-security",
     "python-shell": "^3.0.1"
   },
-  "type": "module"
+  "type": "module" 
 }
