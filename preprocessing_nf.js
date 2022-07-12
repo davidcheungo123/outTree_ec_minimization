@@ -7,9 +7,10 @@ const args = process.argv.slice(2)
 
 const fileName = args[0]
 const rootDir = args[1]
+const folderName = args[2]
 
 
-let unprocessedData = fs.readFileSync(`${rootDir}/finalInput/${fileName}`)
+let unprocessedData = fs.readFileSync(`${rootDir}/finalInput/${folderName}/${fileName}`)
 unprocessedData = JSON.parse(unprocessedData)
 let nodes = unprocessedData["nodes"]
 let links = unprocessedData["links"]
