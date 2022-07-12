@@ -1,3 +1,4 @@
+
 from libc.math cimport sin , cos, sqrt, fabs
 import numpy as np
 cimport numpy as cnp
@@ -74,7 +75,6 @@ def updateCoordinatesX(double[:] x , double[:] y, float cX ,float cY, float rad,
     for i in prange(l, nogil=True):
         new_x[i] = (x[i] - cX)*cos(rad) - (y[i]-cY)*sin(rad) + cX
     return new_x
-
 
 
 @cython.boundscheck(False)
@@ -290,21 +290,18 @@ def findIntersection(list links):
                             intersections.append({ 'id' : f"{linkA['id']}${linkB['id']}", 'x': intersection, 'y': getLinkEqn(linkATargetY, linkASourceY, linkATargetX,linkASourceX, intersection) })
     return intersections
 
-
-
 ## all nodes inputed should not be root node here
 @cython.boundscheck(False)
 @cython.wraparound(False)
 def mainAlgo(dict node, dict link, list parsedNodeData, list parsedLinkData, float THETA, float LAMBDA,
     dict nodeIDMapToParsedLinkDataIndexSource, dict nodeIDMapToParsedLinkDataIndexTarget, dict nodeIDMapToParsedNodeDataIndex,
-    dict linkIDMapToParsedNodeDataIndexSource, dict linkIDMapToParsedNodeDataIndexTarget, dict linkIDMapToParsedLinkDataIndex,
-    dict depth
+    dict linkIDMapToParsedNodeDataIndexSource, dict linkIDMapToParsedNodeDataIndexTarget, dict linkIDMapToParsedLinkDataIndex
     ):
 
     cdef:
         int numOfIntersections, iterations = 0, currentNodeIndex, nodeIndex, breakFromWhile = 0, tempIndex = 1
         list requiredUpdateNode = search(node['id'], nodeIDMapToParsedLinkDataIndexSource,  nodeIDMapToParsedLinkDataIndexTarget, parsedLinkData)
-        int l = len(requiredUpdateNode), N = len(parsedLinkData), recordLength = 0, nodeDepth = depth[node["id"]]
+        int l = len(requiredUpdateNode), N = len(parsedLinkData), recordLength = 0
         unsigned int indexing, index
         long[:] orderedNodeIndex = np.zeros(l, dtype=long)
         ## a numpy float is a C double.
@@ -359,12 +356,14 @@ def mainAlgo(dict node, dict link, list parsedNodeData, list parsedLinkData, flo
                 records[recordLength -1]['childNodes'].update([(requiredUpdateNode[indexing],[new_x, new_y])])
                 parsedNodeData[currentNodeIndex].update([("x",new_x), ("y",new_y)])
         
+
+
         numOfIntersections = calIntersectionNum(parsedLinkData, linkObjects, linkFilteredList)
         if numOfIntersections == 0:
             breakFromWhile  = 1
             break
         """The loss function is defined as : #Intersections  - lambda * dotproduct (which is for measuring the degree of parallelism)"""
-        records[recordLength - 1]["loss"] = numOfIntersections - LAMBDA*lossFunction(node, binaryVariable, parsedLinkData, nodeIDMapToParsedLinkDataIndexTarget) / nodeDepth
+        records[recordLength - 1]["loss"] = numOfIntersections - LAMBDA*lossFunction(node, binaryVariable, parsedLinkData, nodeIDMapToParsedLinkDataIndexTarget)
         iterations += 1
         realTheta = iterations* THETA
     

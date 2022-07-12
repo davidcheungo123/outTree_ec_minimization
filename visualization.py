@@ -27,8 +27,8 @@ def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None
     plt.show()
 
 
-with open("./data/annealed_gen/INNODE_132_vis_annealed.json", "r") as f:
-# with open("./results/step2Finished.json", "r") as f:
+with open("./data/annealed_gen/INNODE_1848_vis_annealed.json", "r") as f:
+# with open("./results/INNODE_1848_vis_annealed_final_newAlgo.json", "r") as f:
     rawData = f.read()
     parsedData = json.loads(rawData)
     parsedNodeData = parsedData["nodes"]
@@ -40,7 +40,7 @@ nodesPosition = {str(node[0]): [node[1]["x"], node[1]["y"]] for node in processe
 A = AGraph()
 A.add_nodes_from([node["id"] for node in parsedNodeData])
 for link in parsedLinksData:
-    A.add_edge(str(link["source"]["id"]), str(link["target"]["id"]), len=link["len"])
+    A.add_edge(str(link["source"]["id"]), str(link["target"]["id"]), len=30*link["len"])
 G = nx.nx_agraph.from_agraph(A)
 edge_labels = {(str(link['source']['id']), str(link['target']['id'])): str(link['id']) for link in parsedLinksData}
 node_labels = {str(key) : str(key) for key in nodesPosition.keys()}

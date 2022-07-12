@@ -15,7 +15,7 @@ def main():
         #     else:
         #         parsedLinksData = json.loads(line)
 
-        with open("./data/annealed_gen/INNODE_132_vis_annealed.json", "r") as f:
+        with open("./data/annealed_gen/INNODE_1848_vis_annealed.json", "r") as f:
             rawData = json.load(f)
         parsedNodeData = rawData["nodes"]
         parsedLinksData = rawData["links"]
@@ -78,7 +78,7 @@ def main():
 
         """create a dictionary that contains depth information for nodes"""
         for node in parsedNodeData:
-            temp = findDepth(node, parsedLinksData)[0]
+            temp = findDepth(node, parsedLinksData, nodeIDMapToParsedLinkDataIndexTarget)[0]
             depth[str(node["id"])] = temp
         """endCreate"""
 
@@ -131,18 +131,21 @@ def main():
                 if int_count[str(link1["id"])] > int_count[str(link2["id"])]:
                     mainAlgo(node1, link1, parsedNodeData, parsedLinksData, THETA, LAMBDA,
                     nodeIDMapToParsedLinkDataIndexSource, nodeIDMapToParsedLinkDataIndexTarget, nodeIDMapToParsedNodeDataIndex,
-                    linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex
+                    linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex,
+                    depth
                     )
                 elif int_count[str(link1["id"])] < int_count[str(link2["id"])]:
                     mainAlgo(node2, link2, parsedNodeData, parsedLinksData, THETA, LAMBDA,
                     nodeIDMapToParsedLinkDataIndexSource, nodeIDMapToParsedLinkDataIndexTarget, nodeIDMapToParsedNodeDataIndex,
-                    linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex
+                    linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex,
+                    depth
                     )
                 else:
                     if link1["len"] > link2["len"]:
                         mainAlgo(node1, link1, parsedNodeData, parsedLinksData, THETA, LAMBDA,
                         nodeIDMapToParsedLinkDataIndexSource, nodeIDMapToParsedLinkDataIndexTarget, nodeIDMapToParsedNodeDataIndex,
-                        linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex
+                        linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex,
+                        depth
                         )
                     elif link1['len'] == link2['len']:
                         choices = [(node1, link1), (node2, link2)]
@@ -150,34 +153,38 @@ def main():
                         node, link = choices[randomSelection]
                         mainAlgo(node, link, parsedNodeData, parsedLinksData, THETA, LAMBDA,
                         nodeIDMapToParsedLinkDataIndexSource, nodeIDMapToParsedLinkDataIndexTarget, nodeIDMapToParsedNodeDataIndex,
-                        linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex
+                        linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex,
+                        depth
                         )
                     else:
                         mainAlgo(node2, link2, parsedNodeData, parsedLinksData, THETA, LAMBDA,
                         nodeIDMapToParsedLinkDataIndexSource, nodeIDMapToParsedLinkDataIndexTarget, nodeIDMapToParsedNodeDataIndex,
-                        linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex
+                        linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex,
+                        depth
                         )
             elif node1Depth < node2Depth:
                 mainAlgo(node2, link2, parsedNodeData, parsedLinksData, THETA, LAMBDA,
                 nodeIDMapToParsedLinkDataIndexSource, nodeIDMapToParsedLinkDataIndexTarget, nodeIDMapToParsedNodeDataIndex,
-                linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex
+                linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex,
+                depth
                 )
             else:
                 mainAlgo(node1, link1, parsedNodeData, parsedLinksData, THETA, LAMBDA,
                 nodeIDMapToParsedLinkDataIndexSource, nodeIDMapToParsedLinkDataIndexTarget, nodeIDMapToParsedNodeDataIndex,
-                linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex
+                linkIDMapToParsedNodeDataIndexSource, linkIDMapToParsedNodeDataIndexTarget, linkIDMapToParsedLinkDataIndex,
+                depth
                 )
             temp += 1
         stop = timeit.default_timer()
-        # print(json.dumps({"message": f"Time: {stop-start}"}))
+        print(json.dumps({"message": f"Time: {stop-start}"}))
         # print(json.dumps({"nodes": parsedNodeData, "links": parsedLinksData}))
 
 
-        with open(f"./results/step3Finished_trial.json", "w") as f:
+        with open(f"./results/step2Finished_trial.json", "w") as f:
             json.dump({"nodes": parsedNodeData, "links": parsedLinksData}, f)
 
 
-    core(1,9)
+    core(1,18)
 
 
 if __name__ == '__main__':
