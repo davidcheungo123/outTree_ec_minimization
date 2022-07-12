@@ -10,3 +10,7 @@ INNODE*.json
 SEQLESS*.json
 b_tree*.json
 ROOT*.json
+
+
+annealed_gen/**
+results/**

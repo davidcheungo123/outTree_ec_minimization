@@ -40,7 +40,7 @@ nodesPosition = {str(node[0]): [node[1]["x"], node[1]["y"]] for node in processe
 A = AGraph()
 A.add_nodes_from([node["id"] for node in parsedNodeData])
 for link in parsedLinksData:
-    A.add_edge(str(link["source"]["id"]), str(link["target"]["id"]), len=20*link["len"])
+    A.add_edge(str(link["source"]["id"]), str(link["target"]["id"]), len=link["len"])
 G = nx.nx_agraph.from_agraph(A)
 edge_labels = {(str(link['source']['id']), str(link['target']['id'])): str(link['id']) for link in parsedLinksData}
 node_labels = {str(key) : str(key) for key in nodesPosition.keys()}
