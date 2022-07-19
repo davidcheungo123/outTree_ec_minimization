@@ -15,7 +15,7 @@ def main():
         #     else:
         #         parsedLinksData = json.loads(line)
 
-        with open("./data/annealed_gen/INNODE_1848_vis_annealed.json", "r") as f:
+        with open("./data/annealed_gen/nodes_links_222_annealed.json", "r") as f:
             rawData = json.load(f)
         parsedNodeData = rawData["nodes"]
         parsedLinksData = rawData["links"]

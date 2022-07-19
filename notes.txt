@@ -1,0 +1,2 @@
+we should write a file to store global states to store parameters that will be used in javascript and python
+e.g initialization params in preprocessing.js and fineTuning.js

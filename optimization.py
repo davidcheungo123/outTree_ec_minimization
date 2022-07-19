@@ -9,14 +9,18 @@ def main():
 
     def core(THETA, LAMBDA):
 
-        for index, line in enumerate(sys.stdin):
-            if index == 0:
-                parsedNodeData = json.loads(line)
-            else:
-                parsedLinksData = json.loads(line)
+        # for index, line in enumerate(sys.stdin):
+        #     if index == 0:
+        #         parsedNodeData = json.loads(line)
+        #     else:
+        #         parsedLinksData = json.loads(line)
+        with open("./data/annealed_gen/INNODE_1848_vis_annealed.json", "r") as f:
+            rawData = json.load(f)
+        parsedNodeData = rawData["nodes"]
+        parsedLinksData = rawData["links"]
 
-        parsedNodeData = json.loads(parsedNodeData)
-        parsedLinksData = json.loads(parsedLinksData)
+        # parsedNodeData = json.loads(parsedNodeData)
+        # parsedLinksData = json.loads(parsedLinksData)
         """Make each link in parsedLinksData point to specific object in parsedNodeData"""
         for index, data in enumerate(parsedLinksData):
             for indexNode, dataNode in enumerate(parsedNodeData):
@@ -131,7 +135,10 @@ def main():
             temp = temp + 1
         stop = timeit.default_timer()
         print(json.dumps({"message": f"Time: {stop-start}"}))
-        print(json.dumps({"nodes": parsedNodeData, "links": parsedLinksData}))
+        # print(json.dumps({"nodes": parsedNodeData, "links": parsedLinksData}))
+
+        with open(f"./results/step2Finished_trial.json", "w") as f:
+            json.dump({"nodes": parsedNodeData, "links": parsedLinksData}, f)
 
     core(1, 9)
 
