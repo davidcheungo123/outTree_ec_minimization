@@ -2,8 +2,11 @@ node_modules
 *.png
 
 build/
-algo.c
-algo.cp*
+
+
+algo.c*
+
+algo_improved.c*
 
 
 INNODE*.json

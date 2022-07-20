@@ -46,7 +46,7 @@ const params = {
 const radiusCalc = (minR, maxR, gamma, value) => maxR - (maxR - minR) * Math.exp(-gamma * (value - 1));
 
 const d3Init = async () => {
-    let rawData = fs.readFileSync(`./results/step2Finished_trial.json`,  {encoding:'utf8', flag:'r'})
+    let rawData = fs.readFileSync(`./results/INNODE_1848_vis_annealed_final.json`,  {encoding:'utf8', flag:'r'})
     let parsedData = JSON.parse(rawData)
     
     let nodes = parsedData.nodes
@@ -91,7 +91,7 @@ const d3Init = async () => {
                     }
                     if (newNodes.length === nodesLength) {
                         fs.writeFileSync(
-                            `./results/step3Finished_trial.json`,
+                            `./results/INNODE_1848_vis_annealed_final_fineTuned.json`,
                             JSON.stringify({nodes: newNodes, links: newLinks})
                         );
 

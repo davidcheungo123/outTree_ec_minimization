@@ -59,7 +59,7 @@ def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None
     plt.show()
 
 # with open("../finalOutput/220712_12-18-33_zk/INNODE_1848_vis_annealed_final.json", "r") as f:
-with open("./results/step3Finished_trial.json", "r") as f:
+with open("./results/INNODE_1848_vis_annealed_final_fineTuned.json", "r") as f:
 # with open("./data/annealed_gen/nodes_links_222_annealed.json", "r") as f:
 
     rawData = f.read()
