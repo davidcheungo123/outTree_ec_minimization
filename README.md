@@ -36,6 +36,6 @@ In **main_{2,3}steps.js**, we can add nodes that we would like to track to the a
 #### 7. Nextflow:
 All scripts with _nf.{js,py} at the end are for automation flow, which are added argument functionality.
 
-a. Generate coordinates by d3 simulation => preprocessing_nf.js
-b. Optimize coordinates by algorithm => optimization_improved_nf.py
-c. Fine tuning => fineTuning_nf.js
+a. | Generate coordinates by d3 simulation | preprocessing_nf.js |
+b. | Optimcoordinates by algorithm | optimization_improved_nf.py |
+c. | Fine Tuning by d3 simulation | fineTuning_nf.js |
