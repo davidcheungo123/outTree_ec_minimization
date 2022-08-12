@@ -34,7 +34,7 @@ you can customize if you want to have node labels, edge labels, radius informati
 In **main_{2,3}steps.js**, we can add nodes that we would like to track to the array *tracking*, the tracking algo will be running during execution time including storing coordindate information into a file which is by default placed at *./tracking/trackingResults.json*. Afterwards, we can execute **tracking.py** to see more information about nodes defined in the *tracking* array.
 
 #### 7. Nextflow:
-All scripts with _nf.{js,py} at the end are for automation flow, which are added argument functionality.
+All scripts with **nf.{js,py}** at the end are for automation flow, which are added argument functionality.
 
 a. | Generate coordinates by d3 simulation | preprocessing_nf.js |
 b. | Optimcoordinates by algorithm | optimization_improved_nf.py |
