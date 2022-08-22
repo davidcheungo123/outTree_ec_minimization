@@ -7,6 +7,8 @@ import argparse
 import os
 import re
 
+NUM_INTERSECTION_UPPER_LIMIT = 10000
+
 parser = argparse.ArgumentParser(description='graph visualization optimization algorithm')
 parser.add_argument('-i', '--inFile', metavar="INPUT FILE NAME", action='store', type=str, required=True, help='input file name that we need to optimize coordinates')
 parser.add_argument('-o', '--outDir', metavar="OUTPUT DIRECTORY", action='store', type=str, default=os.getcwd(), help="output directory for json files")
@@ -120,6 +122,12 @@ def main():
         """end assignment"""
         filteredIntersectionList = [(key, value) for key, value in D.items() if value >= 0]
         number  = len(filteredIntersectionList)
+
+        """set upper limit to filteredIntersectionList if it exceeds originally"""
+        if number > NUM_INTERSECTION_UPPER_LIMIT:
+            number = NUM_INTERSECTION_UPPER_LIMIT
+            filteredIntersectionList = filteredIntersectionList[:NUM_INTERSECTION_UPPER_LIMIT]
+        """end set"""
         
 
         ## need to investigate the priority so we can optimize it better

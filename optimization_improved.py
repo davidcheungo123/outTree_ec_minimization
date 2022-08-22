@@ -5,6 +5,8 @@ import timeit
 import sys
 
 
+NUM_INTERSECTION_UPPER_LIMIT = 10000
+
 def main():
 
     def core(THETA, LAMBDA):
@@ -15,11 +17,10 @@ def main():
         #     else:
         #         parsedLinksData = json.loads(line)
 
-        with open("./data/annealed_gen/nodes_links_222_annealed.json", "r") as f:
+        with open("./data/annealed/nodes_links_222.json", "r") as f:
             rawData = json.load(f)
         parsedNodeData = rawData["nodes"]
         parsedLinksData = rawData["links"]
-
         """
         1) Make each nodeName points to index of links that the source is that node using nodeIDMapToParsedLinkDataIndexSource
         2) Make each nodeName points to index of link that the target is that node using nodeIDMapToParsedLinkDataIndexTarget
@@ -109,7 +110,13 @@ def main():
         """end assignment"""
         filteredIntersectionList = [(key, value) for key, value in D.items() if value >= 0]
         number  = len(filteredIntersectionList)
-        
+
+
+        """set upper limit to filteredIntersectionList if it exceeds originally"""
+        if number > NUM_INTERSECTION_UPPER_LIMIT:
+            number = NUM_INTERSECTION_UPPER_LIMIT
+            filteredIntersectionList = filteredIntersectionList[:NUM_INTERSECTION_UPPER_LIMIT]
+        """end set"""
 
         ## need to investigate the priority so we can optimize it better
         for intersection, _  in filteredIntersectionList:

@@ -5,6 +5,8 @@ import timeit
 import sys
 
 
+NUM_INTERSECTION_UPPER_LIMIT = 10000
+
 def main():
 
     def core(THETA, LAMBDA):
@@ -89,6 +91,13 @@ def main():
         filteredIntersectionList = [(key, value)
                                     for key, value in D.items() if value >= 0]
         number = len(filteredIntersectionList)
+
+        """set upper limit to filteredIntersectionList if it exceeds originally"""
+        if number > NUM_INTERSECTION_UPPER_LIMIT:
+            number = NUM_INTERSECTION_UPPER_LIMIT
+            filteredIntersectionList = filteredIntersectionList[:NUM_INTERSECTION_UPPER_LIMIT]
+        """end set"""
+
         for intersection, _ in filteredIntersectionList:
             print(json.dumps(
                 {"message": "------------------------------------------------------"}))

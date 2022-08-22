@@ -17,9 +17,9 @@ WITH_NODE_NUM_DISPLAY = True
 NODE_NUM_SCALAR = 5
 
 
-# print(os.getenv("ANNEAL_MINR"), type(os.getenv("ANNEAL_MINR")))
-# print(os.getenv("ANNEAL_MAXR"), type(os.getenv("ANNEAL_MAXR")))
-# print(os.getenv("ANNEAL_GAMMA"), type(os.getenv("ANNEAL_GAMMA")))
+print(os.getenv("ANNEAL_MINR"), type(os.getenv("ANNEAL_MINR")))
+print(os.getenv("ANNEAL_MAXR"), type(os.getenv("ANNEAL_MAXR")))
+print(os.getenv("ANNEAL_GAMMA"), type(os.getenv("ANNEAL_GAMMA")))
 
 """
 gamma determines the speed of declining
@@ -31,8 +31,10 @@ PARAMS = {
 }
 
 def radisuCalc(minR, maxR, gamma, value):
-    if value >=1:
-        return maxR - (maxR- minR)*math.exp(-gamma*(value - 1))
+    if value is not None:
+        if value >=1:
+            return maxR - (maxR- minR)*math.exp(-gamma*(value - 1))
+        return 0
     return 0
 
 def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None, c=None , node_labels=None, node_size=None):
@@ -58,9 +60,8 @@ def draw_graph_edgeLabel(G, nodes_position, edge_labels=None, intersections=None
     plt.savefig('resultEdge.png')
     plt.show()
 
-# with open("../finalOutput/220712_12-18-33_zk/INNODE_1848_vis_annealed_final.json", "r") as f:
-with open("./results/INNODE_1848_vis_annealed_final_fineTuned.json", "r") as f:
-# with open("./data/annealed_gen/nodes_links_222_annealed.json", "r") as f:
+with open("./data/annealed/nodes_links_222.json", "r") as f:
+# with open("./results/step2Finished_trial.json", "r") as f:
 
     rawData = f.read()
     parsedData = json.loads(rawData)
