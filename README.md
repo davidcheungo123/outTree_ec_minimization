@@ -4,6 +4,7 @@
 
 
 <p align="center"><img  src="./1.png" alt="running_algo" width="1000"/></p>
+<p style="text-align: center; font-style: italic; ">LHS: original; RHS: modified</p>
 
 #### 1. Install packages required:
 
