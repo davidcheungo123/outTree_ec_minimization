@@ -1,5 +1,7 @@
 # outTree_ec_minimization
 
+<p align="center"><img  src="./1.png" alt="running_algo" width="300"/></p>
+
 **This algo is for edge crossings minimization especially for out-trees (one root only), it combines d3.js and customized algo which uses brute force to search the optimal positions when it also preserves length information as much as possible.**
 
 #### 1. Install packages required:
